@@ -6,4 +6,12 @@
 #
 #Creating a Makefile to complile provided files
 
+CC=gcc
+CFLAGS=-ggdb -I ""
 
+#.PHONY:
+
+#other:
+
+prompt: prompt.h prompt.c
+	$(CC) $(CFLAGS) prompt.h prompt.c -c prompt.o
