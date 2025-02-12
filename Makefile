@@ -7,11 +7,20 @@
 #Creating a Makefile to complile provided files
 
 CC=gcc
-CFLAGS=-ggdb -I ""
+CFLAGS=-ggdb -I.
 
 #.PHONY:
 
 #other:
 
-prompt: prompt.h prompt.c
-	$(CC) $(CFLAGS) prompt.h prompt.c -c prompt.o
+prompt.o: prompt.c prompt.h
+	$(CC) $(CFLAGS) -c prompt.c -o prompt.o
+
+compute.o: compute.c compute.h
+	$(CC) $(CFLAGS) -c compute.c -o compute.o
+
+display.o: display.c display.h
+	$(CC) $(CFLAGS) -c display.c -o display.o
+
+approxe: approxe.c prompt.o compute.o display.o
+	$(CC) $(CFLAGS) -c approxe.c -o approxe
