@@ -4,14 +4,17 @@
 # Homework 3
 # 02/10/2025
 #
-#Creating a Makefile to complile provided files
+#Creating a Makefile
 
 CC=gcc
 CFLAGS=-ggdb -I.
 
-#.PHONY:
+.PHONY: approxe prompt.o compute.o display.o clean tidy
 
-#other:
+#OBJS:
+
+approxe: approxe.c prompt.o compute.o display.o
+	$(CC) $(CFLAGS) approxe.c prompt.o compute.o display.o -o approxe
 
 prompt.o: prompt.c prompt.h
 	$(CC) $(CFLAGS) -c prompt.c -o prompt.o
@@ -22,5 +25,8 @@ compute.o: compute.c compute.h
 display.o: display.c display.h
 	$(CC) $(CFLAGS) -c display.c -o display.o
 
-approxe: approxe.c prompt.o compute.o display.o
-	$(CC) $(CFLAGS) -c approxe.c -o approxe
+tidy:
+	/bin/rm -f *.o
+
+clean: tidy
+	/bin/rm -f approxe
